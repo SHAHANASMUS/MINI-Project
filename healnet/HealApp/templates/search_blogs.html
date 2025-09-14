@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Blogs - HealNet</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="text-success mb-4">🔍 Search Blogs</h2>
+    <form method="get">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="q" placeholder="Search blogs by title or keyword">
+        <button class="btn btn-success">Search</button>
+      </div>
+    </form>
+
+    <!-- Results -->
+    <div>
+      <h5 class="mt-4">Results:</h5>
+      {% for blog in blogs %}
+        <div class="border p-3 mb-3 rounded">
+          <h6>{{ blog.title }}</h6>
+          <p>{{ blog.content|truncatechars:100 }}</p>
+          <a href="{% url 'view_blog' blog.id %}" class="btn btn-sm btn-outline-primary">Read More</a>
+        </div>
+      {% empty %}
+        <p class="text-muted">No blogs found.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</body>
+</html>

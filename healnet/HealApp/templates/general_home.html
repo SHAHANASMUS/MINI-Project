@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General User - HealNet</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0a74da, #4dafff);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      padding: 20px;
+      background: #005bb5;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      width: 300px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    .btn {
+      background: #fff;
+      color: #0a74da;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 5px;
+    }
+    .btn:hover {
+      background: #eaf4ff;
+    }
+  </style>
+</head>
+<body>
+  <header>HealNet - General User</header>
+  <div class="content">
+    <h2>Welcome, {{ user.username }}!</h2>
+    <input type="text" placeholder="Search Blogs...">
+    
+          <a href="{% url 'logout' %}" class="btn btn-danger btn-custom">Search</a>
+          <a href="{% url 'view_blogs' %}" class="btn btn-danger btn-custom">View Blog</a>
+          <a href="{% url 'logout' %}" class="btn btn-danger btn-custom">Logout</a>
+
+  </div>
+</body>
+</html>

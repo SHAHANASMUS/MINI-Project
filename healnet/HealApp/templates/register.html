@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #2196f3, #64b5f6);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      width: 480px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    h3 { color: #1565c0; font-weight: bold; }
+    .form-label { font-weight: 500; color: #0d47a1; }
+    .btn-primary { background-color: #1565c0; border: none; font-weight: bold; }
+    .btn-primary:hover { background-color: #0d47a1; }
+    .form-control:focus, .form-select:focus { border-color: #64b5f6; box-shadow: 0 0 5px rgba(100,181,246,0.8); }
+    .is-valid { border-color: #28a745 !important; }
+    .is-invalid { border-color: #dc3545 !important; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h3 class="text-center mb-3">Create Account</h3>
+  <form id="registerForm" method="post" novalidate>
+    {% csrf_token %}
+      {{ form.as_p }}
+      <p class="d-none" id="patient_name_field">
+        <label for="id_patient_name">Patient name:</label>
+        <input type="text" name="patient_name" maxlength="150" id="id_patient_name">
+      </p>
+
+      <p class="d-none" id="disease_field">
+        <label for="id_disease">Disease:</label>
+        <textarea name="disease" cols="40" rows="10" id="id_disease"></textarea>
+      </p>
+
+    <button type="submit" class="btn btn-primary w-100">Register</button>
+  </form>
+
+  <p class="text-center mt-3">
+    Already have an account? <a href="{% url 'login' %}" class="text-primary fw-bold">Login</a>
+  </p>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const roleSelect = document.getElementById('id_role');
+    const patientNameField = document.getElementById('patient_name_field');
+    const diseaseField = document.getElementById('disease_field');
+
+    function togglePatientFields() {
+      const isPatient = roleSelect.value === 'patient';
+      patientNameField.classList.toggle('d-none', !isPatient);
+      diseaseField.classList.toggle('d-none', !isPatient);
+    }
+
+    togglePatientFields();
+    roleSelect.addEventListener('change', togglePatientFields);
+  });
+</script>
+
+
+</body>
+</html>
